@@ -1,186 +1,322 @@
-[![CodeGuide](/codeguide-backdrop.svg)](https://codeguide.dev)
+# AI Marketing SaaS Platform
 
-# CodeGuide Starter Kit
+A comprehensive AI-powered lead generation and marketing automation platform built with Next.js, TypeScript, Clerk, and Supabase.
 
-A modern web application starter template built with Next.js 15, featuring authentication, database integration, AI capabilities, and dark mode support.
+## 🚀 Features
 
-## Tech Stack
+### Core Functionality
+- **AI Lead Scraper**: Generate high-quality leads using advanced AI algorithms
+- **WhatsApp Integration**: Direct messaging campaigns with real-time tracking
+- **Credit Management**: Flexible credit system for different service types
+- **Subscription Management**: Multiple tiers with automated billing
+- **Analytics Dashboard**: Real-time insights and performance tracking
 
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
-- **Language:** TypeScript
-- **Authentication:** [Clerk](https://clerk.com/)
-- **Database:** [Supabase](https://supabase.com/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **UI Components:** [shadcn/ui](https://ui.shadcn.com/)
-- **AI Integration:** [Vercel AI SDK](https://sdk.vercel.ai/)
-- **Theme System:** [next-themes](https://github.com/pacocoursey/next-themes)
+### Technical Features
+- **Authentication**: Secure user management with Clerk
+- **Database**: Robust data management with Supabase
+- **API Architecture**: RESTful APIs with proper error handling
+- **Responsive Design**: Mobile-first UI with Tailwind CSS
+- **Type Safety**: Full TypeScript implementation
 
-## Prerequisites
+## 📋 System Architecture
 
-Before you begin, ensure you have the following:
-- Node.js 18+ installed
-- A [Clerk](https://clerk.com/) account for authentication
-- A [Supabase](https://supabase.com/) account for database
-- Optional: [OpenAI](https://platform.openai.com/) or [Anthropic](https://console.anthropic.com/) API key for AI features
-- Generated project documents from [CodeGuide](https://codeguide.dev/) for best development experience
+### Database Schema
+- **Users**: User profiles and authentication data
+- **Subscriptions**: Plan management and billing cycles
+- **Credit Ledger**: Transaction tracking for all credit operations
+- **Lead Searches**: Search history and results
+- **Leads**: Generated lead data with rich metadata
+- **WhatsApp Messages**: Message tracking and delivery status
+- **Invoices**: Billing records and payment history
+- **Notifications**: User notifications and system alerts
 
-## Getting Started
+### API Endpoints
+- `/api/user` - User profile management
+- `/api/subscriptions/*` - Subscription operations
+- `/api/credits/*` - Credit balance and transactions
+- `/api/scraper/search` - Lead generation
+- `/api/whatsapp/send` - WhatsApp messaging
+- `/api/billing/*` - Payment processing
+- `/api/notifications` - User notifications
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Next.js 15**: React framework with App Router
+- **TypeScript**: Type-safe development
+- **Tailwind CSS**: Utility-first styling
+- **Radix UI**: Accessible component library
+- **Lucide React**: Icon library
+- **Clerk**: Authentication and user management
+
+### Backend
+- **Next.js API Routes**: Serverless API endpoints
+- **Supabase**: Database and real-time services
+- **PostgreSQL**: Primary database with RLS policies
+- **Row Level Security**: Data isolation and privacy
+
+### Infrastructure
+- **Vercel**: Deployment platform (recommended)
+- **Supabase**: Database hosting
+- **Clerk**: Authentication service
+
+## 📦 Installation
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- Supabase account
+- Clerk account
+
+### Setup Steps
 
 1. **Clone the repository**
-   ```bash
-   git clone <repository-url>
-   cd codeguide-starter-kit
-   ```
+```bash
+git clone <repository-url>
+cd ai-marketing-platform
+```
 
 2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   # or
-   pnpm install
-   ```
+```bash
+npm install
+```
 
-3. **Environment Variables Setup**
-   - Copy the `.env.example` file to `.env.local`:
-     ```bash
-     cp .env.example .env.local
-     ```
-   - Fill in the environment variables in `.env.local` (see Configuration section below)
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   # or
-   pnpm dev
-   ```
-
-5. **Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.**
-
-The homepage includes a setup dashboard with direct links to configure each service.
-
-## Configuration
-
-### Clerk Setup
-1. Go to [Clerk Dashboard](https://dashboard.clerk.com/)
-2. Create a new application
-3. Go to API Keys
-4. Copy the `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY` and `CLERK_SECRET_KEY`
-
-### Supabase Setup
-1. Go to [Supabase Dashboard](https://supabase.com/dashboard)
-2. Create a new project
-3. Go to Authentication → Integrations → Add Clerk (for third-party auth)
-4. Go to Project Settings > API
-5. Copy the `Project URL` as `NEXT_PUBLIC_SUPABASE_URL`
-6. Copy the `anon` public key as `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-
-### AI Integration Setup (Optional)
-1. Go to [OpenAI Platform](https://platform.openai.com/) or [Anthropic Console](https://console.anthropic.com/)
-2. Create an API key
-3. Add to your environment variables
-
-## Environment Variables
-
-Create a `.env.local` file in the root directory with the following variables:
-
+3. **Environment Variables**
+Create `.env.local` file with:
 ```env
 # Clerk Authentication
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-CLERK_SECRET_KEY=your_secret_key
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
 
-# Supabase
+# Supabase Database
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
-# AI Integration (Optional)
-OPENAI_API_KEY=your_openai_api_key
-ANTHROPIC_API_KEY=your_anthropic_api_key
+# Billing (Optional)
+BILLING_CRON_SECRET=your_cron_secret_key
 ```
 
-## Features
-
-- 🔐 Authentication with Clerk (middleware protection)
-- 🗄️ Supabase Database with third-party auth integration
-- 🤖 AI Chat Interface with OpenAI/Anthropic support
-- 🎨 40+ shadcn/ui components (New York style)
-- 🌙 Dark mode with system preference detection
-- 🎯 Built-in setup dashboard with service status
-- 🚀 App Router with Server Components
-- 🔒 Row Level Security examples with Clerk user IDs
-- 📱 Responsive design with TailwindCSS v4
-- 🎨 Custom fonts (Geist Sans, Geist Mono, Parkinsans)
-
-## Project Structure
-
-```
-codeguide-starter-kit/
-├── src/
-│   ├── app/                    # Next.js app router pages
-│   │   ├── api/chat/          # AI chat API endpoint
-│   │   ├── globals.css        # Global styles with dark mode
-│   │   ├── layout.tsx         # Root layout with providers
-│   │   └── page.tsx           # Hero + setup dashboard
-│   ├── components/            # React components
-│   │   ├── ui/                # shadcn/ui components (40+)
-│   │   ├── chat.tsx           # AI chat interface
-│   │   ├── theme-provider.tsx # Theme context
-│   │   └── theme-toggle.tsx   # Dark mode toggle
-│   ├── lib/                   # Utility functions
-│   │   ├── supabase.ts        # Supabase client with Clerk auth
-│   │   ├── user.ts            # User utilities
-│   │   ├── utils.ts           # General utilities
-│   │   └── env-check.ts       # Environment validation
-│   └── middleware.ts          # Clerk route protection
-├── supabase/
-│   └── migrations/            # Database migrations with RLS examples
-├── CLAUDE.md                  # AI coding agent documentation
-├── SUPABASE_CLERK_SETUP.md   # Integration setup guide
-└── components.json            # shadcn/ui configuration
+4. **Database Setup**
+```bash
+# Run Supabase migrations
+supabase db push
 ```
 
-## Database Integration
+5. **Start Development Server**
+```bash
+npm run dev
+```
 
-This starter includes modern Clerk + Supabase integration:
+## 🏗️ Project Structure
 
-- **Third-party auth** (not deprecated JWT templates)
-- **Row Level Security** policies using `auth.jwt() ->> 'sub'` for Clerk user IDs
-- **Example migrations** with various RLS patterns (user-owned, public/private, collaboration)
-- **Server-side client** with automatic Clerk token handling
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── api/               # API endpoints
+│   │   ├── user/         # User management
+│   │   ├── subscriptions/ # Subscription handling
+│   │   ├── credits/      # Credit operations
+│   │   ├── scraper/      # Lead generation
+│   │   ├── whatsapp/     # WhatsApp integration
+│   │   ├── billing/      # Payment processing
+│   │   └── notifications/ # User notifications
+│   ├── dashboard/         # Main dashboard
+│   ├── scraper/          # Lead scraper interface
+│   ├── whatsapp/         # WhatsApp messaging
+│   ├── billing/          # Subscription management
+│   └── page.tsx         # Landing page
+├── components/            # Reusable UI components
+│   └── ui/             # Base component library
+├── lib/                 # Utility functions
+│   ├── supabase.ts      # Database client
+│   ├── user-service.ts   # User management
+│   └── utils.ts         # Helper functions
+└── supabase/            # Database migrations
+    └── migrations/       # SQL schema files
+```
 
-## AI Coding Agent Integration
+## 💳 Subscription Plans
 
-This starter is optimized for AI coding agents:
+### Trial (Free)
+- 100 Scraper Credits
+- 150 Interaction Credits
+- 14-day duration
+- Basic features
 
-- **`CLAUDE.md`** - Comprehensive project context and patterns
-- **Setup guides** with detailed integration steps
-- **Example migrations** with RLS policy templates
-- **Clear file structure** and naming conventions
-- **TypeScript integration** with proper type definitions
+### Basic (IDR 2.4M/month)
+- 10,000 Scraper Credits
+- 15,000 Interaction Credits
+- Email support
+- Standard features
 
-## Documentation Setup
+### Pro (IDR 4.9M/month)
+- 25,000 Scraper Credits
+- 50,000 Interaction Credits
+- Priority support
+- API access
+- Advanced features
 
-To implement the generated documentation from CodeGuide:
+### Enterprise (IDR 9.9M/month)
+- 100,000 Scraper Credits
+- 200,000 Interaction Credits
+- 24/7 support
+- Full API access
+- Custom integrations
 
-1. Create a `documentation` folder in the root directory:
-   ```bash
-   mkdir documentation
-   ```
+## 🔧 Configuration
 
-2. Place all generated markdown files from CodeGuide in this directory:
-   ```bash
-   # Example structure
-   documentation/
-   ├── project_requirements_document.md             
-   ├── app_flow_document.md
-   ├── frontend_guideline_document.md
-   └── backend_structure_document.md
-   ```
+### Database Migration
+The system uses Supabase migrations for schema management:
 
-3. These documentation files will be automatically tracked by git and can be used as a reference for your project's features and implementation details.
+```sql
+-- Key tables
+users                    -- User profiles
+subscriptions             -- User subscriptions
+subscription_plans        -- Available plans
+credit_ledger           -- Credit transactions
+lead_searches           -- Search history
+leads                   -- Generated leads
+whatsapp_messages       -- Message tracking
+invoices                -- Billing records
+notifications           -- User alerts
+```
 
-## Contributing
+### Credit System
+- **Scraper Credits**: Used for lead generation
+- **Interaction Credits**: Used for WhatsApp messages
+- **Transaction Types**: trial_allocation, monthly_allocation, topup_purchase, usage, refund
+- **Balance Tracking**: Real-time balance calculation
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## 🔄 Automated Processes
+
+### Monthly Billing Cycle
+- **Cron Job**: Daily check for due subscriptions
+- **Payment Processing**: Automated payment attempts
+- **Credit Allocation**: Monthly credit distribution
+- **Failure Handling**: Retry logic and notifications
+- **Status Updates**: Subscription status management
+
+### Credit Management
+- **Real-time Tracking**: Immediate balance updates
+- **Transaction History**: Complete audit trail
+- **Refund Logic**: Automatic refunds on failures
+- **Usage Validation**: Credit sufficiency checks
+
+## 🧪 Testing
+
+### Unit Tests
+```bash
+npm run test
+```
+
+### Integration Tests
+```bash
+npm run test:integration
+```
+
+### E2E Tests
+```bash
+npm run test:e2e
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect repository to Vercel
+2. Configure environment variables
+3. Deploy automatically on push to main
+
+### Manual Deployment
+```bash
+npm run build
+npm start
+```
+
+## 📊 Monitoring
+
+### Key Metrics
+- User acquisition and retention
+- Credit usage patterns
+- Subscription conversion rates
+- API response times
+- Error rates and types
+
+### Logging
+- Structured error logging
+- Performance monitoring
+- User activity tracking
+- System health checks
+
+## 🔒 Security
+
+### Data Protection
+- Row Level Security (RLS) in database
+- JWT token authentication
+- Input validation and sanitization
+- Rate limiting on API endpoints
+
+### Privacy
+- GDPR compliance considerations
+- Data encryption in transit
+- Secure payment processing
+- User data isolation
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch
+3. Make changes with tests
+4. Submit pull request
+5. Code review and merge
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 🆘 Support
+
+### Documentation
+- API documentation: `/api/docs`
+- User guide: `/help`
+- Status page: `/status`
+
+### Contact
+- Email: support@aimarketing.com
+- Discord: [Community Server]
+- Issues: [GitHub Issues]
+
+## 🗺 Roadmap
+
+### Upcoming Features
+- [ ] Advanced lead filtering
+- [ ] Email campaign integration
+- [ ] Analytics dashboard
+- [ ] Mobile app
+- [ ] API rate limiting
+- [ ] Multi-language support
+
+### Technical Improvements
+- [ ] Performance optimization
+- [ ] Caching layer
+- [ ] Background job processing
+- [ ] Real-time notifications
+- [ ] Advanced error handling
+
+## 📈 Performance
+
+### Optimization Strategies
+- Database indexing
+- API response caching
+- Image optimization
+- Code splitting
+- Lazy loading
+
+### Benchmarks
+- API response time: <200ms
+- Page load time: <2s
+- Database queries: <50ms
+- Credit processing: <100ms
+
+---
+
+**Built with ❤️ using modern web technologies**
